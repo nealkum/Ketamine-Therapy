@@ -1,15 +1,15 @@
 import { Reveal } from "./Reveal";
 import { AssessmentDialog } from "./AssessmentDialog";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+
 
 export function Hero() {
   return (
     <section className="relative pt-16 pb-24 lg:pt-32 lg:pb-40 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-center">
         
-        {/* Content Side */}
-        <div className="max-w-2xl">
+        {/* Content */}
+        <div className="max-w-2xl text-center">
           <Reveal>
             <div className="inline-block px-4 py-1.5 rounded-full border border-[var(--sage-light)] bg-[var(--sage)]/5 text-[var(--sage-dark)] text-xs font-semibold tracking-widest uppercase mb-8">
               Medical-grade ketamine therapy
@@ -44,29 +44,6 @@ export function Hero() {
             </a>
           </Reveal>
         </div>
-
-        {/* Visual Side */}
-        <Reveal delay={0.2} direction="left" className="relative lg:h-[600px] flex items-center justify-center">
-          <div className="relative w-full max-w-md aspect-square lg:aspect-auto lg:h-[500px] rounded-[40px] bg-gradient-nasal overflow-hidden shadow-2xl flex items-center justify-center p-8 border border-white/40">
-            {/* Abstract representation of products */}
-            <div className="relative w-full h-full flex items-center justify-center">
-              <motion.div 
-                animate={{ y: [-10, 10, -10], rotate: [-2, 2, -2] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute w-40 h-40 bg-white/30 backdrop-blur-xl border border-white/50 rounded-[40px] rotate-12 shadow-lg"
-              />
-              <motion.div 
-                animate={{ y: [15, -15, 15], rotate: [5, -5, 5] }}
-                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute w-32 h-32 bg-white/20 backdrop-blur-md border border-white/40 rounded-full -translate-x-12 translate-y-12 shadow-xl"
-              />
-            </div>
-            
-          </div>
-          
-          {/* Decorative background blur */}
-          <div className="absolute -z-10 w-96 h-96 bg-[var(--sage-light)]/30 rounded-full blur-[100px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
-        </Reveal>
 
       </div>
     </section>
