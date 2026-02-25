@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucid — Medical Grade Ketamine Therapy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F5F0E8;
+  --warm-white: #FDFAF5;
+  --sage: #8A9A7B;
+  --sage-light: #B5C4A8;
+  --sage-dark: #6B7D5E;
+  --charcoal: #2A2A2A;
+  --warm-gray: #6B6560;
+  --light-gray: #D4CFC7;
+  --accent: #C4A46C;
+  --accent-dark: #A88C54;
+  --blush: #E8D5C4;
+  --deep: #1A1A1A;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+font-family: var(–font-body);
+background: var(–warm-white);
+color: var(–charcoal);
+-webkit-font-smoothing: antialiased;
+overflow-x: hidden;
+}
+
+/* ─── UTILITY ─── */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+@media (max-width: 768px) { .container { padding: 0 24px; } }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(40px); }
+to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+@keyframes slideIn {
+from { opacity: 0; transform: translateX(-30px); }
+to { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+from { opacity: 0; transform: scale(0.95); }
+to { opacity: 1; transform: scale(1); }
+}
+@keyframes float {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-12px); }
+}
+@keyframes grain {
+0%, 100% { transform: translate(0, 0); }
+10% { transform: translate(-5%, -10%); }
+20% { transform: translate(-15%, 5%); }
+30% { transform: translate(7%, -25%); }
+40% { transform: translate(-5%, 25%); }
+50% { transform: translate(-15%, 10%); }
+60% { transform: translate(15%, 0%); }
+70% { transform: translate(0%, 15%); }
+80% { transform: translate(3%, 35%); }
+90% { transform: translate(-10%, 10%); }
+}
+
+.reveal {
+opacity: 0;
+transform: translateY(30px);
+transition: all 0.9s var(–ease-out);
+}
+.reveal.visible {
+opacity: 1;
+transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+
+/* ─── GRAIN OVERLAY ─── */
+body::after {
+content: ‘’;
+position: fixed;
+inset: -200%;
+width: 400%;
+height: 400%;
+background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘noise’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23noise)’ opacity=‘0.03’/%3E%3C/svg%3E”);
+pointer-events: none;
+z-index: 9999;
+animation: grain 8s steps(10) infinite;
+}
+
+/* ─── TOP BAR ─── */
+.top-bar {
+background: var(–sage-dark);
+color: white;
+text-align: center;
+padding: 10px 20px;
+font-size: 0.78rem;
+letter-spacing: 0.08em;
+font-weight: 400;
+}
+.top-bar a { color: white; text-decoration: underline; text-underline-offset: 2px; }
+
+/* ─── NAV ─── */
+nav {
+position: sticky;
+top: 0;
+z-index: 100;
+background: rgba(253, 250, 245, 0.92);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border-bottom: 1px solid rgba(0,0,0,0.06);
+padding: 0 40px;
+transition: all 0.4s ease;
+}
+.nav-inner {
+max-width: 1280px;
+margin: 0 auto;
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 72px;
+}
+.nav-logo {
+font-family: var(–font-display);
+font-size: 1.9rem;
+font-weight: 300;
+letter-spacing: 0.04em;
+color: var(–charcoal);
+text-decoration: none;
+}
+.nav-logo span { font-weight: 600; }
+.nav-links { display: flex; gap: 36px; align-items: center; }
+.nav-links a {
+font-size: 0.82rem;
+letter-spacing: 0.04em;
+text-decoration: none;
+color: var(–warm-gray);
+font-weight: 500;
+transition: color 0.3s;
+text-transform: uppercase;
+}
+.nav-links a:hover { color: var(–charcoal); }
+.nav-cta {
+background: var(–charcoal) !important;
+color: white !important;
+padding: 10px 24px !important;
+border-radius: 100px !important;
+font-size: 0.8rem !important;
+transition: all 0.3s !important;
+}
+.nav-cta:hover { background: var(–sage-dark) !important; }
+
+.mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+.mobile-menu-btn span { display: block; width: 22px; height: 1.5px; background: var(–charcoal); margin: 5px 0; transition: 0.3s; }
+
+@media (max-width: 900px) {
+.nav-links { display: none; }
+.mobile-menu-btn { display: block; }
+nav { padding: 0 24px; }
+}
+
+/* ─── HERO ─── */
+.hero {
+position: relative;
+min-height: 92vh;
+display: flex;
+align-items: center;
+background: var(–cream);
+overflow: hidden;
+}
+.hero::before {
+content: ‘’;
+position: absolute;
+top: -20%;
+right: -10%;
+width: 70%;
+height: 140%;
+background: radial-gradient(ellipse at center, rgba(138, 154, 123, 0.12) 0%, transparent 70%);
+pointer-events: none;
+}
+.hero::after {
+content: ‘’;
+position: absolute;
+bottom: -20%;
+left: -5%;
+width: 50%;
+height: 80%;
+background: radial-gradient(ellipse at center, rgba(196, 164, 108, 0.08) 0%, transparent 70%);
+pointer-events: none;
+}
+.hero-inner {
+max-width: 1280px;
+margin: 0 auto;
+padding: 80px 40px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 80px;
+align-items: center;
+position: relative;
+z-index: 1;
+}
+.hero-content { animation: fadeUp 1.2s var(–ease-out) both; }
+.hero-eyebrow {
+font-size: 0.75rem;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(–sage-dark);
+font-weight: 600;
+margin-bottom: 24px;
+display: flex;
+align-items: center;
+gap: 12px;
+}
+.hero-eyebrow::before {
+content: ‘’;
+width: 32px;
+height: 1px;
+background: var(–sage);
+}
+.hero h1 {
+font-family: var(–font-display);
+font-size: clamp(2.8rem, 5vw, 4.2rem);
+font-weight: 300;
+line-height: 1.1;
+color: var(–charcoal);
+margin-bottom: 28px;
+}
+.hero h1 em {
+font-style: italic;
+color: var(–sage-dark);
+}
+.hero-subtitle {
+font-size: 1.05rem;
+line-height: 1.7;
+color: var(–warm-gray);
+max-width: 480px;
+margin-bottom: 40px;
+font-weight: 300;
+}
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+background: var(–charcoal);
+color: white;
+padding: 16px 36px;
+border-radius: 100px;
+font-size: 0.88rem;
+font-weight: 500;
+text-decoration: none;
+letter-spacing: 0.02em;
+transition: all 0.4s var(–ease-out);
+border: none;
+cursor: pointer;
+}
+.btn-primary:hover { background: var(–sage-dark); transform: translateY(-2px); }
+.btn-primary svg { transition: transform 0.3s; }
+.btn-primary:hover svg { transform: translateX(3px); }
+.btn-secondary {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+background: transparent;
+color: var(–charcoal);
+padding: 16px 36px;
+border-radius: 100px;
+font-size: 0.88rem;
+font-weight: 500;
+text-decoration: none;
+letter-spacing: 0.02em;
+border: 1.5px solid var(–light-gray);
+transition: all 0.4s var(–ease-out);
+cursor: pointer;
+}
+.btn-secondary:hover { border-color: var(–charcoal); background: rgba(42,42,42,0.04); }
+
+.hero-visual {
+position: relative;
+animation: scaleIn 1.4s var(–ease-out) 0.2s both;
+}
+.hero-image-container {
+position: relative;
+border-radius: 300px 300px 40px 40px;
+overflow: hidden;
+aspect-ratio: 3/4;
+background: linear-gradient(135deg, var(–sage-light), var(–blush));
+}
+.hero-image-container img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+/* Abstract product visual placeholder */
+.hero-product-visual {
+width: 100%;
+height: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 30px;
+padding: 60px;
+}
+.product-shape {
+width: 120px;
+height: 200px;
+border-radius: 60px;
+background: rgba(255,255,255,0.5);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.6);
+animation: float 6s ease-in-out infinite;
+position: relative;
+}
+.product-shape::after {
+content: ‘Rx’;
+position: absolute;
+bottom: 30px;
+left: 50%;
+transform: translateX(-50%);
+font-family: var(–font-display);
+font-size: 1.4rem;
+color: rgba(255,255,255,0.8);
+font-weight: 300;
+}
+.product-shape:nth-child(2) {
+width: 80px;
+height: 80px;
+border-radius: 50%;
+animation-delay: -2s;
+}
+.product-shape:nth-child(2)::after { content: ‘’; }
+
+.hero-badge {
+position: absolute;
+bottom: 40px;
+left: -30px;
+background: white;
+padding: 18px 24px;
+border-radius: 20px;
+box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+display: flex;
+align-items: center;
+gap: 14px;
+animation: slideIn 1s var(–ease-out) 0.8s both;
+}
+.hero-badge-icon {
+width: 44px;
+height: 44px;
+border-radius: 12px;
+background: var(–sage);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.hero-badge-text { font-size: 0.78rem; line-height: 1.4; }
+.hero-badge-text strong { display: block; color: var(–charcoal); font-weight: 600; }
+.hero-badge-text span { color: var(–warm-gray); }
+
+@media (max-width: 900px) {
+.hero-inner { grid-template-columns: 1fr; gap: 50px; padding: 60px 24px; }
+.hero-visual { max-width: 400px; margin: 0 auto; }
+.hero-badge { left: 0; bottom: 20px; }
+}
+
+/* ─── TRUST BAR ─── */
+.trust-bar {
+padding: 50px 0;
+border-bottom: 1px solid rgba(0,0,0,0.06);
+background: var(–warm-white);
+}
+.trust-inner {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 60px;
+flex-wrap: wrap;
+}
+.trust-item {
+text-align: center;
+opacity: 0.6;
+transition: opacity 0.3s;
+}
+.trust-item:hover { opacity: 1; }
+.trust-item .num {
+font-family: var(–font-display);
+font-size: 2rem;
+font-weight: 300;
+color: var(–charcoal);
+}
+.trust-item .label {
+font-size: 0.72rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–warm-gray);
+margin-top: 4px;
+}
+
+/* ─── HOW IT WORKS ─── */
+.how-it-works {
+padding: 120px 0;
+background: var(–warm-white);
+}
+.section-header {
+text-align: center;
+margin-bottom: 80px;
+}
+.section-eyebrow {
+font-size: 0.72rem;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(–sage-dark);
+font-weight: 600;
+margin-bottom: 16px;
+}
+.section-title {
+font-family: var(–font-display);
+font-size: clamp(2rem, 3.5vw, 3rem);
+font-weight: 300;
+line-height: 1.15;
+color: var(–charcoal);
+}
+.section-title em { font-style: italic; color: var(–sage-dark); }
+.section-subtitle {
+font-size: 1rem;
+color: var(–warm-gray);
+max-width: 540px;
+margin: 20px auto 0;
+line-height: 1.7;
+font-weight: 300;
+}
+
+.steps-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 40px;
+}
+.step-card {
+text-align: center;
+padding: 50px 36px;
+border-radius: 24px;
+background: var(–cream);
+border: 1px solid rgba(0,0,0,0.04);
+transition: all 0.5s var(–ease-out);
+position: relative;
+}
+.step-card:hover {
+transform: translateY(-6px);
+box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+}
+.step-num {
+font-family: var(–font-display);
+font-size: 3.5rem;
+font-weight: 300;
+color: var(–sage-light);
+line-height: 1;
+margin-bottom: 24px;
+}
+.step-icon {
+width: 64px;
+height: 64px;
+border-radius: 20px;
+background: white;
+margin: 0 auto 24px;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+.step-card h3 {
+font-family: var(–font-display);
+font-size: 1.4rem;
+font-weight: 400;
+margin-bottom: 12px;
+}
+.step-card p {
+font-size: 0.9rem;
+line-height: 1.7;
+color: var(–warm-gray);
+font-weight: 300;
+}
+@media (max-width: 768px) {
+.steps-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+}
+
+/* ─── PRODUCTS ─── */
+.products {
+padding: 120px 0;
+background: var(–cream);
+}
+.products-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 40px;
+margin-top: 20px;
+}
+.product-card {
+background: white;
+border-radius: 28px;
+overflow: hidden;
+transition: all 0.5s var(–ease-out);
+border: 1px solid rgba(0,0,0,0.04);
+}
+.product-card:hover {
+transform: translateY(-6px);
+box-shadow: 0 30px 80px rgba(0,0,0,0.08);
+}
+.product-image {
+aspect-ratio: 4/3;
+position: relative;
+overflow: hidden;
+}
+.product-image-bg {
+width: 100%;
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.product-image-bg.nasal {
+background: linear-gradient(160deg, #E8E4DB 0%, #D4CFC7 40%, #B5C4A8 100%);
+}
+.product-image-bg.lozenge {
+background: linear-gradient(160deg, #E8D5C4 0%, #D4CFC7 40%, #C4A46C 100%);
+}
+.product-icon-large {
+width: 140px;
+height: 140px;
+border-radius: 50%;
+background: rgba(255,255,255,0.4);
+backdrop-filter: blur(20px);
+display: flex;
+align-items: center;
+justify-content: center;
+border: 1px solid rgba(255,255,255,0.5);
+transition: transform 0.5s var(–ease-out);
+}
+.product-card:hover .product-icon-large { transform: scale(1.08); }
+.product-tag {
+position: absolute;
+top: 20px;
+left: 20px;
+background: white;
+padding: 6px 14px;
+border-radius: 100px;
+font-size: 0.7rem;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+font-weight: 600;
+color: var(–sage-dark);
+}
+.product-body { padding: 36px; }
+.product-body h3 {
+font-family: var(–font-display);
+font-size: 1.8rem;
+font-weight: 400;
+margin-bottom: 8px;
+}
+.product-body .dose {
+font-size: 0.8rem;
+color: var(–sage-dark);
+font-weight: 500;
+margin-bottom: 16px;
+letter-spacing: 0.04em;
+}
+.product-body p {
+font-size: 0.92rem;
+line-height: 1.7;
+color: var(–warm-gray);
+font-weight: 300;
+margin-bottom: 24px;
+}
+.product-footer {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.product-price {
+font-family: var(–font-display);
+font-size: 1.5rem;
+font-weight: 400;
+}
+.product-price span {
+font-size: 0.85rem;
+font-family: var(–font-body);
+color: var(–warm-gray);
+font-weight: 300;
+}
+.btn-product {
+padding: 12px 28px;
+border-radius: 100px;
+background: var(–charcoal);
+color: white;
+font-size: 0.82rem;
+font-weight: 500;
+text-decoration: none;
+border: none;
+cursor: pointer;
+transition: all 0.3s;
+}
+.btn-product:hover { background: var(–sage-dark); }
+
+@media (max-width: 768px) {
+.products-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+}
+
+/* ─── SCIENCE / BENEFITS ─── */
+.science {
+padding: 120px 0;
+background: var(–deep);
+color: white;
+position: relative;
+overflow: hidden;
+}
+.science::before {
+content: ‘’;
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: radial-gradient(ellipse at 20% 50%, rgba(138, 154, 123, 0.15) 0%, transparent 60%),
+radial-gradient(ellipse at 80% 80%, rgba(196, 164, 108, 0.1) 0%, transparent 50%);
+pointer-events: none;
+}
+.science .section-eyebrow { color: var(–sage-light); }
+.science .section-title { color: white; }
+.science .section-title em { color: var(–sage-light); }
+.science .section-subtitle { color: rgba(255,255,255,0.6); }
+
+.benefits-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 32px;
+position: relative;
+z-index: 1;
+}
+.benefit-card {
+padding: 44px 32px;
+border-radius: 24px;
+background: rgba(255,255,255,0.04);
+border: 1px solid rgba(255,255,255,0.08);
+backdrop-filter: blur(10px);
+transition: all 0.4s var(–ease-out);
+}
+.benefit-card:hover {
+background: rgba(255,255,255,0.08);
+transform: translateY(-4px);
+}
+.benefit-icon {
+width: 52px;
+height: 52px;
+border-radius: 16px;
+background: rgba(138, 154, 123, 0.2);
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 22px;
+}
+.benefit-card h3 {
+font-family: var(–font-display);
+font-size: 1.3rem;
+font-weight: 400;
+margin-bottom: 10px;
+color: white;
+}
+.benefit-card p {
+font-size: 0.88rem;
+line-height: 1.7;
+color: rgba(255,255,255,0.55);
+font-weight: 300;
+}
+
+@media (max-width: 768px) {
+.benefits-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+}
+
+/* ─── TESTIMONIALS ─── */
+.testimonials {
+padding: 120px 0;
+background: var(–warm-white);
+}
+.testimonial-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 32px;
+}
+.testimonial-card {
+background: var(–cream);
+padding: 40px 32px;
+border-radius: 24px;
+border: 1px solid rgba(0,0,0,0.04);
+transition: all 0.4s var(–ease-out);
+}
+.testimonial-card:hover {
+transform: translateY(-4px);
+box-shadow: 0 16px 50px rgba(0,0,0,0.06);
+}
+.testimonial-stars { margin-bottom: 20px; color: var(–accent); font-size: 0.9rem; letter-spacing: 2px; }
+.testimonial-card blockquote {
+font-family: var(–font-display);
+font-size: 1.15rem;
+line-height: 1.6;
+font-weight: 300;
+font-style: italic;
+color: var(–charcoal);
+margin-bottom: 24px;
+}
+.testimonial-author {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+.testimonial-avatar {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background: var(–sage-light);
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: var(–font-display);
+font-size: 1rem;
+color: white;
+font-weight: 500;
+}
+.testimonial-name {
+font-size: 0.85rem;
+font-weight: 600;
+color: var(–charcoal);
+}
+.testimonial-detail {
+font-size: 0.75rem;
+color: var(–warm-gray);
+}
+
+@media (max-width: 768px) {
+.testimonial-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+}
+
+/* ─── PRICING ─── */
+.pricing {
+padding: 120px 0;
+background: var(–cream);
+}
+.pricing-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 32px;
+}
+.pricing-card {
+background: white;
+border-radius: 28px;
+padding: 48px 36px;
+border: 1px solid rgba(0,0,0,0.06);
+transition: all 0.4s var(–ease-out);
+position: relative;
+}
+.pricing-card.featured {
+border: 2px solid var(–sage);
+box-shadow: 0 20px 60px rgba(138, 154, 123, 0.12);
+}
+.pricing-card.featured::before {
+content: ‘Most Popular’;
+position: absolute;
+top: -12px;
+left: 50%;
+transform: translateX(-50%);
+background: var(–sage);
+color: white;
+font-size: 0.7rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+padding: 5px 18px;
+border-radius: 100px;
+font-weight: 600;
+}
+.pricing-card:hover { transform: translateY(-6px); box-shadow: 0 30px 80px rgba(0,0,0,0.08); }
+.pricing-name {
+font-family: var(–font-display);
+font-size: 1.5rem;
+font-weight: 400;
+margin-bottom: 8px;
+}
+.pricing-desc {
+font-size: 0.85rem;
+color: var(–warm-gray);
+margin-bottom: 24px;
+font-weight: 300;
+line-height: 1.6;
+}
+.pricing-amount {
+font-family: var(–font-display);
+font-size: 2.8rem;
+font-weight: 300;
+margin-bottom: 4px;
+}
+.pricing-amount span {
+font-size: 1rem;
+color: var(–warm-gray);
+font-family: var(–font-body);
+}
+.pricing-period {
+font-size: 0.8rem;
+color: var(–warm-gray);
+margin-bottom: 32px;
+}
+.pricing-features {
+list-style: none;
+margin-bottom: 36px;
+}
+.pricing-features li {
+padding: 10px 0;
+font-size: 0.88rem;
+color: var(–warm-gray);
+display: flex;
+align-items: center;
+gap: 12px;
+border-bottom: 1px solid rgba(0,0,0,0.04);
+font-weight: 300;
+}
+.pricing-features li:last-child { border: none; }
+.pricing-features li svg { flex-shrink: 0; color: var(–sage); }
+.btn-pricing {
+display: block;
+width: 100%;
+text-align: center;
+padding: 16px;
+border-radius: 100px;
+font-size: 0.88rem;
+font-weight: 500;
+text-decoration: none;
+border: none;
+cursor: pointer;
+transition: all 0.3s;
+}
+.btn-pricing.filled {
+background: var(–charcoal);
+color: white;
+}
+.btn-pricing.filled:hover { background: var(–sage-dark); }
+.btn-pricing.outline {
+background: transparent;
+color: var(–charcoal);
+border: 1.5px solid var(–light-gray);
+}
+.btn-pricing.outline:hover { border-color: var(–charcoal); }
+
+@media (max-width: 768px) {
+.pricing-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+}
+
+/* ─── FAQ ─── */
+.faq {
+padding: 120px 0;
+background: var(–warm-white);
+}
+.faq-grid {
+max-width: 760px;
+margin: 0 auto;
+}
+.faq-item {
+border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.faq-question {
+width: 100%;
+background: none;
+border: none;
+padding: 28px 0;
+font-family: var(–font-display);
+font-size: 1.2rem;
+font-weight: 400;
+color: var(–charcoal);
+cursor: pointer;
+display: flex;
+justify-content: space-between;
+align-items: center;
+text-align: left;
+}
+.faq-question svg {
+flex-shrink: 0;
+transition: transform 0.3s;
+color: var(–warm-gray);
+}
+.faq-item.open .faq-question svg { transform: rotate(45deg); }
+.faq-answer {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.4s var(–ease-out), padding 0.4s;
+}
+.faq-item.open .faq-answer { max-height: 300px; }
+.faq-answer p {
+padding-bottom: 28px;
+font-size: 0.92rem;
+line-height: 1.7;
+color: var(–warm-gray);
+font-weight: 300;
+}
+
+/* ─── CTA SECTION ─── */
+.cta-section {
+padding: 120px 0;
+background: var(–sage-dark);
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+.cta-section::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.08), transparent 70%);
+}
+.cta-section .section-eyebrow { color: rgba(255,255,255,0.6); }
+.cta-section h2 {
+font-family: var(–font-display);
+font-size: clamp(2rem, 3.5vw, 3.2rem);
+font-weight: 300;
+color: white;
+margin-bottom: 20px;
+position: relative;
+}
+.cta-section h2 em { font-style: italic; color: var(–cream); }
+.cta-section p {
+font-size: 1.05rem;
+color: rgba(255,255,255,0.65);
+max-width: 520px;
+margin: 0 auto 40px;
+line-height: 1.7;
+font-weight: 300;
+position: relative;
+}
+.cta-section .btn-primary {
+background: white;
+color: var(–charcoal);
+position: relative;
+}
+.cta-section .btn-primary:hover { background: var(–cream); }
+
+/* ─── FOOTER ─── */
+footer {
+background: var(–deep);
+color: rgba(255,255,255,0.5);
+padding: 80px 0 40px;
+}
+.footer-grid {
+display: grid;
+grid-template-columns: 2fr 1fr 1fr 1fr;
+gap: 60px;
+margin-bottom: 60px;
+}
+.footer-brand .nav-logo { color: white; display: inline-block; margin-bottom: 16px; }
+.footer-tagline {
+font-size: 0.9rem;
+line-height: 1.7;
+max-width: 300px;
+font-weight: 300;
+}
+.footer-col h4 {
+color: white;
+font-size: 0.78rem;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+font-weight: 600;
+margin-bottom: 20px;
+}
+.footer-col a {
+display: block;
+color: rgba(255,255,255,0.5);
+text-decoration: none;
+font-size: 0.88rem;
+padding: 5px 0;
+font-weight: 300;
+transition: color 0.3s;
+}
+.footer-col a:hover { color: white; }
+.footer-bottom {
+border-top: 1px solid rgba(255,255,255,0.08);
+padding-top: 30px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: 0.78rem;
+}
+.footer-legal { display: flex; gap: 24px; }
+.footer-legal a { color: rgba(255,255,255,0.4); text-decoration: none; font-weight: 300; }
+.footer-legal a:hover { color: white; }
+
+.footer-disclaimer {
+margin-top: 40px;
+padding-top: 30px;
+border-top: 1px solid rgba(255,255,255,0.06);
+font-size: 0.72rem;
+line-height: 1.7;
+color: rgba(255,255,255,0.3);
+max-width: 800px;
+}
+
+@media (max-width: 768px) {
+.footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+.footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- Top Bar -->
+
+<div class="top-bar">
+  Physician-guided ketamine therapy — Delivered to your door &nbsp;·&nbsp; <a href="#assessment">Take the free assessment →</a>
+</div>
+
+<!-- Navigation -->
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo"><span>Lucid</span></a>
+    <div class="nav-links">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#treatments">Treatments</a>
+      <a href="#science">Science</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#assessment" class="nav-cta">Get Started</a>
+    </div>
+    <button class="mobile-menu-btn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Medical-grade ketamine therapy</div>
+      <h1>Reclaim your mind. <em>Rediscover</em> yourself.</h1>
+      <p class="hero-subtitle">
+        Clinician-prescribed ketamine nasal spray and lozenges delivered to your door. Evidence-based treatment for depression, anxiety, and PTSD — guided by board-certified physicians.
+      </p>
+      <div class="hero-actions">
+        <a href="#assessment" class="btn-primary">
+          Start Free Assessment
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#how-it-works" class="btn-secondary">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-image-container">
+        <div class="hero-product-visual">
+          <div class="product-shape"></div>
+          <div class="product-shape"></div>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 12c0 4.97 3.022 9.232 7.335 11.04a.75.75 0 0 0 .582.003C15.23 21.23 21 16.97 21 12c0-1.39-.236-2.725-.67-3.965" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="hero-badge-text">
+          <strong>FDA-Compliant Care</strong>
+          <span>Board-certified physicians</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Bar -->
+
+<section class="trust-bar">
+  <div class="container">
+    <div class="trust-inner">
+      <div class="trust-item reveal">
+        <div class="num">50,000+</div>
+        <div class="label">Sessions Completed</div>
+      </div>
+      <div class="trust-item reveal reveal-delay-1">
+        <div class="num">89%</div>
+        <div class="label">Report Improvement</div>
+      </div>
+      <div class="trust-item reveal reveal-delay-2">
+        <div class="num">48</div>
+        <div class="label">States Available</div>
+      </div>
+      <div class="trust-item reveal reveal-delay-3">
+        <div class="num">4.8★</div>
+        <div class="label">Average Rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">How It Works</div>
+      <h2 class="section-title">Three simple steps to <em>healing</em></h2>
+      <p class="section-subtitle">Our streamlined process ensures you receive the right care, safely and conveniently from home.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <div class="step-icon">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2M9 5h6m-3 7v4m-2-2h4" stroke="#6B7D5E" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Complete Assessment</h3>
+        <p>Answer a brief clinical questionnaire about your symptoms, medical history, and treatment goals. Takes just 5 minutes.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-num">02</div>
+        <div class="step-icon">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" stroke="#6B7D5E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Physician Consultation</h3>
+        <p>Meet with a board-certified physician via video call. Your doctor will create a personalized treatment plan tailored to your needs.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-num">03</div>
+        <div class="step-icon">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M21 7.5l-9 5.25L3 7.5m18 0l-9-5.25L3 7.5m18 0v9l-9 5.25M3 7.5v9l9 5.25" stroke="#6B7D5E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Treatment Delivered</h3>
+        <p>Your medical-grade ketamine is shipped discreetly to your door. Begin treatment at home with ongoing clinician support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+
+<section class="products" id="treatments">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Treatment Options</div>
+      <h2 class="section-title">Personalized <em>treatment</em>, your way</h2>
+      <p class="section-subtitle">Two clinically-proven delivery methods — prescribed by physicians and customized to your needs.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card reveal">
+        <div class="product-image">
+          <div class="product-image-bg nasal">
+            <div class="product-icon-large">
+              <svg width="48" height="48" fill="none" viewBox="0 0 24 24"><path d="M12 2C8 2 6 5 6 8c0 2 1 3 1 5s-1 4-1 6c0 1.5 1 3 3 3s3-2 3-3V2Z" stroke="#6B7D5E" stroke-width="1.2" stroke-linecap="round"/><path d="M12 2c4 0 6 3 6 6 0 2-1 3-1 5s1 4 1 6c0 1.5-1 3-3 3s-3-2-3-3" stroke="#6B7D5E" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+          <div class="product-tag">Nasal Spray</div>
+        </div>
+        <div class="product-body">
+          <h3>Ketamine Nasal Spray</h3>
+          <div class="dose">Esketamine · Custom Dosing Protocol</div>
+          <p>Fast-acting intranasal delivery for rapid relief. Physician-calibrated dosing with precise metered-dose spray device. Ideal for acute symptom management.</p>
+          <div class="product-footer">
+            <div class="product-price">$149 <span>/month</span></div>
+            <a href="#assessment" class="btn-product">Get Started</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-image">
+          <div class="product-image-bg lozenge">
+            <div class="product-icon-large">
+              <svg width="48" height="48" fill="none" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="8" rx="4" stroke="#A88C54" stroke-width="1.2"/><line x1="12" y1="8" x2="12" y2="16" stroke="#A88C54" stroke-width="1.2" stroke-dasharray="2 2"/></svg>
+            </div>
+          </div>
+          <div class="product-tag">Sublingual</div>
+        </div>
+        <div class="product-body">
+          <h3>Ketamine Lozenges</h3>
+          <div class="dose">Sublingual Troche · Graduated Dosing</div>
+          <p>Sublingual lozenges for deeper, sustained therapeutic sessions. Gradual absorption promotes extended neuroplasticity windows. Perfect for integration-focused protocols.</p>
+          <div class="product-footer">
+            <div class="product-price">$129 <span>/month</span></div>
+            <a href="#assessment" class="btn-product">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Science Section -->
+
+<section class="science" id="science">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">The Science</div>
+      <h2 class="section-title">Why ketamine <em>works</em></h2>
+      <p class="section-subtitle">Decades of clinical research support ketamine as a breakthrough treatment for mental health conditions.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm0 0v2m0-14V4m-8 8H2m20 0h-2" stroke="#B5C4A8" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Neuroplasticity</h3>
+        <p>Ketamine promotes the growth of new neural connections, helping the brain form healthier thought patterns and pathways.</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-1">
+        <div class="benefit-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7Z" stroke="#B5C4A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Rapid Relief</h3>
+        <p>Unlike traditional antidepressants that take weeks, many patients experience significant improvement within hours of their first session.</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-2">
+        <div class="benefit-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697A3.42 3.42 0 0 0 9.78 3.89a3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138c.056.73.33 1.422.806 1.946a3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946A3.42 3.42 0 0 1 7.835 4.697Z" stroke="#B5C4A8" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Clinically Proven</h3>
+        <p>Supported by peer-reviewed research and decades of safe clinical use. Ketamine is recognized as a breakthrough therapy by leading institutions.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" stroke="#B5C4A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Emotional Healing</h3>
+        <p>Creates a unique therapeutic window for processing trauma, reducing anxiety, and building emotional resilience with lasting effects.</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-1">
+        <div class="benefit-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M12 6v6l4 2m6-2a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z" stroke="#B5C4A8" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Lasting Results</h3>
+        <p>Treatment effects compound over time. Integration protocols help cement new thought patterns for sustained improvement well beyond sessions.</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-2">
+        <div class="benefit-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" stroke="#B5C4A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Treatment-Resistant</h3>
+        <p>Effective for patients who haven't responded to traditional antidepressants. A new pathway when conventional treatments fall short.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+
+<section class="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Patient Stories</div>
+      <h2 class="section-title">Real experiences, <em>real results</em></h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <blockquote>"After years of therapy and medication, ketamine was the breakthrough I needed. Within two sessions I felt a weight lift that I'd been carrying for decades."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">S</div>
+          <div>
+            <div class="testimonial-name">Sarah M.</div>
+            <div class="testimonial-detail">Depression & Anxiety · 6 sessions</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">★★★★★</div>
+        <blockquote>"The nasal spray format is so convenient. My physician adjusts my dosing based on how I'm progressing. I finally feel like myself again."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">J</div>
+          <div>
+            <div class="testimonial-name">James R.</div>
+            <div class="testimonial-detail">PTSD · Nasal Spray · 8 sessions</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">★★★★★</div>
+        <blockquote>"I was skeptical at first, but the clinical team made me feel safe and supported. The lozenges are gentle and the integration coaching changed everything."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A</div>
+          <div>
+            <div class="testimonial-name">Amanda K.</div>
+            <div class="testimonial-detail">Treatment-Resistant Depression</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Pricing</div>
+      <h2 class="section-title">Transparent, <em>affordable</em> care</h2>
+      <p class="section-subtitle">Quality ketamine therapy at a fraction of in-clinic costs. No hidden fees, ever.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <div class="pricing-name">Starter</div>
+        <div class="pricing-desc">4 sessions to begin your journey</div>
+        <div class="pricing-amount">$399</div>
+        <div class="pricing-period">One-time · ~$100/session</div>
+        <ul class="pricing-features">
+          <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 4 ketamine sessions</li>
+          <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Initial physician consultation</li>
+          <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Nasal spray or lozenges</li>
+          <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Free discreet shipping</li>
+          <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Chat support</li>
+        </ul>
+        <button class="btn-pricing outline">Get Started</button>
+      </div>
+      <div class="pricing-card featured reveal reveal-delay-1">
+        <div class="pricing-name">Program</div>
+        <div class="pricing-desc">8 sessions for lasting transformation</div>
+        <div class="pricing-amount">$699</div>
+        <div class="pricing-period">One-time · ~$87/session</div>
+        <ul class="pricing-features">
+          <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 8 ketamine sessions</li>
+          <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 2 physician consultations</li>
+          <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Nasal spray or lozenges</li>
+          <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Integration coaching session</li>
+          <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Priority support</li>
+        </ul>
+        <button class="btn-pricing filled">Get Started</button>
+      </div>
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="pricing-name">Membership</div>
+        <div class="pricing-desc">Ongoing care for sustained wellness</div>
+        <div class="pricing-amount">$149 <span>/mo</span></div>
+        <div class="pricing-period">Monthly · Cancel anytime</div>
+        <ul class="pricing-features">
+          <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Ongoing ketamine sessions</li>
+          <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Monthly physician check-ins</li>
+          <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Dose adjustments included</li>
+          <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Integration coaching</li>
+          <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> VIP support + community</li>
+        </ul>
+        <button class="btn-pricing outline">Get Started</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">FAQ</div>
+      <h2 class="section-title">Common <em>questions</em></h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <button class="faq-question">
+          Is ketamine therapy safe?
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Ketamine has been safely used in medicine for over 50 years and is on the WHO's List of Essential Medicines. When prescribed and monitored by a licensed physician, at-home ketamine therapy has an excellent safety profile. Our clinical team conducts thorough evaluations before prescribing and monitors your progress throughout treatment.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          What conditions does ketamine treat?
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Our physicians prescribe ketamine for treatment-resistant depression, generalized anxiety disorder, PTSD, and OCD. Ketamine is used off-label for these conditions and is supported by a growing body of clinical evidence. Your physician will determine if ketamine is appropriate for your specific situation.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          What's the difference between nasal spray and lozenges?
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Nasal spray offers faster onset and is ideal for targeted, shorter sessions. Lozenges (sublingual troches) provide a more gradual experience, well-suited for longer therapeutic sessions focused on integration and processing. Your physician will recommend the best format based on your treatment goals.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          How quickly will I see results?
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Many patients report improvement within hours of their first session. However, the full therapeutic benefit typically builds over a series of sessions. Most patients notice significant, sustained improvement after 4–6 sessions. Your physician will work with you to optimize your treatment timeline.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Do you accept insurance or HSA/FSA?
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>While we don't currently bill insurance directly, many patients successfully use HSA/FSA funds to pay for treatment. We also provide superbills that you can submit to your insurance provider for potential out-of-network reimbursement. Flexible payment plans are available.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          What if ketamine isn't right for me?
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>If our physician determines that ketamine therapy is not appropriate for you during your consultation, you will receive a full refund. Certain conditions — including active psychosis, uncontrolled hypertension, or current substance use disorders — may make ketamine inadvisable. Your safety is always our priority.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+
+<section class="cta-section" id="assessment">
+  <div class="container">
+    <div class="section-eyebrow reveal">Ready to Begin?</div>
+    <h2 class="reveal">Start your journey to <em>clarity</em></h2>
+    <p class="reveal reveal-delay-1">Take our free 5-minute clinical assessment to see if ketamine therapy is right for you. No commitment required.</p>
+    <a href="#" class="btn-primary reveal reveal-delay-2">
+      Take Free Assessment
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo"><span>Lucid</span></a>
+        <p class="footer-tagline">Medical-grade ketamine therapy guided by board-certified physicians. Delivered to your door, designed for lasting change.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Treatment</h4>
+        <a href="#">Nasal Spray</a>
+        <a href="#">Lozenges</a>
+        <a href="#">Pricing</a>
+        <a href="#">How It Works</a>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <a href="#">The Science</a>
+        <a href="#">Research</a>
+        <a href="#">FAQ</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Our Physicians</a>
+        <a href="#">Contact</a>
+        <a href="#">Careers</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Lucid Health, Inc. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Informed Consent</a>
+      </div>
+    </div>
+    <div class="footer-disclaimer">
+      Lucid pairs individuals with licensed clinicians who are trained to diagnose and treat mental health conditions. If a licensed clinician determines that ketamine is an appropriate treatment based on a clinical assessment, they may prescribe compounded ketamine. Compounded medications are not FDA-approved. The use of ketamine for depression, anxiety, and other mental health conditions is supported by a body of scientific literature but individual results may vary. This website does not provide medical advice and is for informational purposes only. If you are in crisis, call 988 (Suicide & Crisis Lifeline) or text HOME to 741741.
+    </div>
+  </div>
+</footer>
+
+<script>
+// Intersection Observer for scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+// Nav shrink on scroll
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 100) {
+    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.06)';
+  } else {
+    nav.style.boxShadow = 'none';
+  }
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
