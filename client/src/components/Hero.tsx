@@ -1,6 +1,6 @@
 import { Reveal } from "./Reveal";
 import { AssessmentDialog } from "./AssessmentDialog";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function Hero() {
@@ -62,21 +62,6 @@ export function Hero() {
               />
             </div>
             
-            {/* Trust Badge overlay */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.5, type: "spring" }}
-              className="absolute bottom-6 -left-6 sm:left-auto sm:-right-8 bg-[var(--charcoal)] text-white p-4 pr-6 rounded-2xl shadow-2xl flex items-center gap-4 border border-[var(--charcoal)]/80"
-            >
-              <div className="w-12 h-12 rounded-full bg-[var(--sage-dark)] flex items-center justify-center shrink-0">
-                <ShieldCheck size={24} className="text-white" />
-              </div>
-              <div>
-                <div className="text-sm font-semibold tracking-wide">FDA-Compliant Care</div>
-                <div className="text-xs text-white/70 font-light mt-0.5">Board-certified physicians</div>
-              </div>
-            </motion.div>
           </div>
           
           {/* Decorative background blur */}
