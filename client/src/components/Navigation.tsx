@@ -18,7 +18,7 @@ export function Navigation() {
     { name: "How It Works", href: "#how-it-works" },
     { name: "Treatments", href: "#treatments" },
     { name: "Science", href: "#science" },
-    { name: "Pricing", href: "#pricing" },
+
     { name: "FAQ", href: "#faq" },
   ];
 

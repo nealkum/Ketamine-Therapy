@@ -37,7 +37,7 @@ export function Treatments() {
               </p>
               <div className="flex items-center justify-between mt-auto">
                 <div className="font-display text-3xl text-[var(--charcoal)] font-light">
-                  $149 <span className="font-sans text-sm font-light text-[var(--warm-gray)]">/month</span>
+                  $149 <span className="font-sans text-sm font-light text-[var(--warm-gray)]">per order</span>
                 </div>
                 <AssessmentDialog>
                   <button className="bg-[var(--charcoal)] text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-[var(--sage-dark)] transition-colors">
@@ -66,7 +66,7 @@ export function Treatments() {
               </p>
               <div className="flex items-center justify-between mt-auto">
                 <div className="font-display text-3xl text-[var(--charcoal)] font-light">
-                  $129 <span className="font-sans text-sm font-light text-[var(--warm-gray)]">/month</span>
+                  $129 <span className="font-sans text-sm font-light text-[var(--warm-gray)]">per order</span>
                 </div>
                 <AssessmentDialog>
                   <button className="bg-[var(--charcoal)] text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-[var(--sage-dark)] transition-colors">

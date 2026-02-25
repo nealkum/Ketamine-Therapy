@@ -5,7 +5,7 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { Treatments } from "@/components/Treatments";
 import { Science } from "@/components/Science";
 import { Testimonials } from "@/components/Testimonials";
-import { Pricing } from "@/components/Pricing";
+
 import { FAQ } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
 
@@ -20,7 +20,7 @@ export default function Home() {
         <Treatments />
         <Science />
         <Testimonials />
-        <Pricing />
+
         <FAQ />
       </main>
       <Footer />
