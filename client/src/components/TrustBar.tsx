@@ -1,7 +1,7 @@
 import { Reveal } from "./Reveal";
 
 const stats = [
-  { num: "50,000+", label: "Sessions Completed" },
+  { num: "2,000+", label: "Sessions Completed" },
   { num: "89%", label: "Report Improvement" },
   { num: "48", label: "States Available" },
   { num: "4.8★", label: "Average Rating" },
