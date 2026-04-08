@@ -15,10 +15,15 @@ export const assessments = pgTable("assessments", {
 });
 
 // === BASE SCHEMAS ===
-export const insertAssessmentSchema = createInsertSchema(assessments).omit({ 
-  id: true, 
+export const insertAssessmentSchema = createInsertSchema(assessments).omit({
+  id: true,
   createdAt: true,
-  status: true 
+  status: true
+}).extend({
+  fullName: z.string().min(1, "Please enter your full name"),
+  email: z.string().email("Please enter a valid email"),
+  phone: z.string().min(7, "Phone number is required for monthly medical screening"),
+  symptoms: z.string().min(1, "Please share what you're seeking help with"),
 });
 
 // === EXPLICIT API CONTRACT TYPES ===
