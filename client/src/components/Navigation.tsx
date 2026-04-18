@@ -16,7 +16,6 @@ export function Navigation() {
   }, []);
 
   const navLinks = [
-    { name: "How It Works", href: "/how-it-works" },
     { name: "Safety", href: "/safety" },
     { name: "Eligibility", href: "/eligibility" },
     { name: "About", href: "/about" },

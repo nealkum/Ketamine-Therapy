@@ -22,19 +22,13 @@ export function Hero() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.3} className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Reveal delay={0.3} className="flex justify-center">
             <AssessmentDialog>
               <button className="bg-[var(--charcoal)] text-white px-8 py-4 rounded-full text-base font-medium hover:bg-[var(--sage-dark)] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 group">
                 Check if you qualify — 5 min
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </AssessmentDialog>
-            <a
-              href="/how-it-works"
-              className="px-8 py-4 rounded-full text-base font-medium text-[var(--charcoal)] border-2 border-[var(--charcoal)]/10 hover:border-[var(--charcoal)] transition-all text-center"
-            >
-              How it works
-            </a>
           </Reveal>
 
           <Reveal delay={0.4}>

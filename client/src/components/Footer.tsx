@@ -36,7 +36,6 @@ export function Footer() {
           <div>
             <h4 className="text-white text-xs font-semibold tracking-widest uppercase mb-6">Treatment</h4>
             <ul className="space-y-4 text-sm font-light text-white/50">
-              <li><Link href="/how-it-works" className="hover:text-white transition-colors">How It Works</Link></li>
               <li><Link href="/eligibility" className="hover:text-white transition-colors">Eligibility</Link></li>
               <li><Link href="/safety" className="hover:text-white transition-colors">Safety</Link></li>
               <li><a href="/#science" className="hover:text-white transition-colors">The Science</a></li>
@@ -66,9 +65,9 @@ export function Footer() {
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-white/40 font-light">
           <p>&copy; {new Date().getFullYear()} Lucid Health Inc. All rights reserved. <span className="ml-2 opacity-60">Reference prototype.</span></p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">HIPAA Notice</a>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/hipaa" className="hover:text-white transition-colors">HIPAA Notice</Link>
           </div>
         </div>
 

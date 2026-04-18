@@ -10,18 +10,22 @@ import Safety from "@/pages/Safety";
 import Eligibility from "@/pages/Eligibility";
 import Contact from "@/pages/Contact";
 import FAQPage from "@/pages/FAQPage";
-import HowItWorksPage from "@/pages/HowItWorksPage";
+import Privacy from "@/pages/Privacy";
+import Terms from "@/pages/Terms";
+import HIPAA from "@/pages/HIPAA";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
-      <Route path="/how-it-works" component={HowItWorksPage} />
       <Route path="/safety" component={Safety} />
       <Route path="/eligibility" component={Eligibility} />
       <Route path="/faq" component={FAQPage} />
       <Route path="/contact" component={Contact} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/terms" component={Terms} />
+      <Route path="/hipaa" component={HIPAA} />
       <Route component={NotFound} />
     </Switch>
   );

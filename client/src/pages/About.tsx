@@ -12,7 +12,7 @@ export default function About() {
           Responsible ketamine care, <em className="italic text-[var(--sage-dark)]">built by clinicians</em>.
         </>
       }
-      lede="Lucid is a physician-led telehealth practice focused on three conditions: treatment-resistant depression, anxiety, and PTSD. We exist to make evidence-based ketamine therapy accessible — without cutting the corners that have given the category a bad name."
+      lede="Lucid is a physician-led telehealth practice focused on three conditions: treatment-resistant depression, anxiety, and PTSD. We exist to make evidence-based ketamine therapy accessible."
     >
       {/* Mission / problem framing */}
       <div className="max-w-4xl mx-auto px-6 lg:px-8 mb-24">

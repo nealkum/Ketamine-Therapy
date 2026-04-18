@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PageLayout, Card } from "@/components/PageLayout";
 import { Reveal } from "@/components/Reveal";
-import { Mail, Phone, MessageSquare } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -22,7 +22,7 @@ export default function Contact() {
       title={<>We'd love to <em className="italic text-[var(--sage-dark)]">hear from you</em>.</>}
       lede="Questions about treatment, eligibility, or working with Lucid? Our patient care team typically responds within one business day."
     >
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 grid md:grid-cols-3 gap-6 mb-16">
+      <div className="max-w-4xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 gap-6 mb-16">
         <Reveal>
           <Card title="Email">
             <a href="mailto:hello@lucid.example" className="text-[var(--sage-dark)] hover:underline flex items-center gap-2">
@@ -36,13 +36,6 @@ export default function Contact() {
               <Phone size={16} /> (800) 555-1234
             </a>
             <p className="mt-2 text-sm">Mon–Fri, 8a–8p ET</p>
-          </Card>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <Card title="Press & partnerships">
-            <a href="mailto:press@lucid.example" className="text-[var(--sage-dark)] hover:underline flex items-center gap-2">
-              <MessageSquare size={16} /> press@lucid.example
-            </a>
           </Card>
         </Reveal>
       </div>
