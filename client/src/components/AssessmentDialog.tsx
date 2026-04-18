@@ -29,6 +29,15 @@ interface AssessmentDialogProps {
 
 type StepField = keyof AssessmentInput;
 
+// Formats a raw input into a US phone pattern: (555) 123-4567
+function formatPhone(input: string): string {
+  const digits = input.replace(/\D/g, "").slice(0, 10);
+  if (digits.length === 0) return "";
+  if (digits.length < 4) return digits;
+  if (digits.length < 7) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+}
+
 const steps: { title: string; subtitle: string; fields: StepField[] }[] = [
   {
     title: "Let's get to know you",
@@ -215,9 +224,13 @@ export function AssessmentDialog({ children }: AssessmentDialogProps) {
                     <FormControl>
                       <Input
                         type="tel"
+                        inputMode="tel"
+                        autoComplete="tel"
                         placeholder="(555) 123-4567"
+                        maxLength={14}
                         {...field}
                         value={field.value || ""}
+                        onChange={(e) => field.onChange(formatPhone(e.target.value))}
                         className="bg-white/50 border-[var(--light-gray)] focus-visible:ring-[var(--sage)]"
                       />
                     </FormControl>

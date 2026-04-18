@@ -10,12 +10,6 @@ export function Hero() {
         
         {/* Content */}
         <div className="max-w-2xl text-center">
-          <Reveal>
-            <div className="inline-block px-4 py-1.5 rounded-full border border-[var(--sage-light)] bg-[var(--sage)]/5 text-[var(--sage-dark)] text-xs font-semibold tracking-widest uppercase mb-8">
-              Depression · Anxiety · PTSD
-            </div>
-          </Reveal>
-          
           <Reveal delay={0.1}>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-light text-[var(--charcoal)] leading-[1.1] mb-6 text-balance">
               Relief from depression — <span className="italic text-[var(--sage-dark)]">in weeks</span>, not years.
@@ -45,7 +39,7 @@ export function Hero() {
 
           <Reveal delay={0.4}>
             <p className="mt-8 text-xs tracking-widest uppercase text-[var(--warm-gray)]/70 font-medium">
-              HIPAA-protected · No credit card · Board-certified physicians
+              HIPAA-protected · Board-certified physicians
             </p>
           </Reveal>
         </div>

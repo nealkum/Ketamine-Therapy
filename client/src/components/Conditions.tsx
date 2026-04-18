@@ -36,16 +36,10 @@ export function Conditions() {
   return (
     <section id="conditions" className="py-24 lg:py-32 bg-[var(--cream)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <Reveal className="text-center max-w-3xl mx-auto mb-16">
-          <div className="text-[var(--sage-dark)] text-sm font-bold tracking-widest uppercase mb-4">
+        <Reveal className="text-center max-w-3xl mx-auto mb-12">
+          <div className="text-[var(--sage-dark)] text-sm font-bold tracking-widest uppercase">
             Conditions we treat
           </div>
-          <h2 className="font-display text-4xl sm:text-5xl text-[var(--charcoal)] font-light mb-6">
-            Built specifically for <em className="italic text-[var(--sage-dark)]">three conditions</em>
-          </h2>
-          <p className="text-lg text-[var(--warm-gray)] font-light leading-relaxed">
-            We don't treat everything. Our clinical model is focused on the three conditions with the strongest evidence base for ketamine-assisted care: depression, anxiety, and PTSD.
-          </p>
         </Reveal>
 
         <div className="grid md:grid-cols-3 gap-6">

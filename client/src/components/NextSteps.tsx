@@ -7,7 +7,7 @@ const steps = [
     icon: ClipboardList,
     time: "Now · 5 min",
     title: "You start your assessment",
-    desc: "Answer a short clinical questionnaire about your symptoms, history, and goals. Nothing is billed, no credit card needed.",
+    desc: "Answer a short clinical questionnaire about your symptoms, history, and goals. Nothing is billed at this step.",
   },
   {
     icon: UserCheck,

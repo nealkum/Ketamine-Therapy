@@ -1,9 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
-import { TrustBar } from "@/components/TrustBar";
 import { Conditions } from "@/components/Conditions";
 import { HowItWorks } from "@/components/HowItWorks";
-import { NextSteps } from "@/components/NextSteps";
 import { Treatments } from "@/components/Treatments";
 import { MedicalStandards } from "@/components/MedicalStandards";
 import { Science } from "@/components/Science";
@@ -17,10 +15,8 @@ export default function Home() {
       <Navigation />
       <main className="flex-1">
         <Hero />
-        <TrustBar />
         <Conditions />
         <HowItWorks />
-        <NextSteps />
         <Treatments />
         <MedicalStandards />
         <Science />
