@@ -27,6 +27,22 @@ export function FAQ() {
     {
       q: "Is this covered by insurance?",
       a: "Currently, at-home ketamine therapy is generally considered out-of-network by most major insurance providers. However, we can provide superbills that you may submit to your insurance for potential partial reimbursement depending on your out-of-network benefits."
+    },
+    {
+      q: "Why do I need a monthly medical check-in?",
+      a: "Ketamine is a Schedule III controlled medication. Before any refill we review your response, side effects, and overall health to confirm continued treatment is appropriate. This protects you and keeps our prescribing practices responsible."
+    },
+    {
+      q: "Can I drive after a session?",
+      a: "No. You should not drive, operate machinery, or make major decisions for the rest of the day after a session. Plan your sessions for a time you can rest afterward."
+    },
+    {
+      q: "Is ketamine addictive?",
+      a: "At the low, physician-monitored doses used for therapy, addiction risk is low but not zero. We screen for substance use history during intake and decline treatment when risk factors are present. If you have concerns, our clinicians will discuss them openly."
+    },
+    {
+      q: "What if it's not working for me?",
+      a: "Roughly 20–30% of patients don't respond adequately to ketamine. If your monthly check-in shows limited benefit, we'll adjust your protocol or, if appropriate, help you transition to another form of care."
     }
   ];
 

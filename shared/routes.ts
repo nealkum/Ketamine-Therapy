@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { insertAssessmentSchema, assessments } from './schema';
+import { insertAssessmentSchema, assessmentSchema } from './schema';
 
 // ============================================
 // SHARED ERROR SCHEMAS
@@ -27,7 +27,7 @@ export const api = {
       path: '/api/assessments' as const,
       input: insertAssessmentSchema,
       responses: {
-        201: z.custom<typeof assessments.$inferSelect>(),
+        201: assessmentSchema,
         400: errorSchemas.validation,
       },
     },

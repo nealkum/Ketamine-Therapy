@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "wouter";
 import { AssessmentDialog } from "./AssessmentDialog";
 
 export function Navigation() {
@@ -15,17 +16,17 @@ export function Navigation() {
   }, []);
 
   const navLinks = [
-    { name: "How It Works", href: "#how-it-works" },
-    { name: "Treatments", href: "#treatments" },
-    { name: "Science", href: "#science" },
-
-    { name: "FAQ", href: "#faq" },
+    { name: "How It Works", href: "/how-it-works" },
+    { name: "Safety", href: "/safety" },
+    { name: "Eligibility", href: "/eligibility" },
+    { name: "About", href: "/about" },
+    { name: "FAQ", href: "/faq" },
   ];
 
   return (
     <>
       <div className="bg-[var(--sage-dark)] text-white text-center text-xs py-2 px-4 tracking-wide font-light flex items-center justify-center gap-2">
-        Physician-guided ketamine therapy — Delivered to your door <span className="hidden sm:inline">·</span>
+        Physician-guided ketamine therapy — delivered to your door <span className="hidden sm:inline">·</span>
         <AssessmentDialog>
           <button className="underline hover:text-[var(--cream)] transition-colors">
             Take the free assessment &rarr;
@@ -37,20 +38,20 @@ export function Navigation() {
         isScrolled ? "bg-[var(--cream)]/80 backdrop-blur-md border-b border-[var(--charcoal)]/5 py-4" : "bg-transparent py-6"
       }`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
-          <a href="#" className="font-display text-2xl font-medium tracking-tight text-[var(--charcoal)]">
+          <Link href="/" className="font-display text-2xl font-medium tracking-tight text-[var(--charcoal)]">
             Lucid
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            <div className="flex gap-8 text-[13px] uppercase tracking-widest font-medium text-[var(--charcoal)]/70">
+            <div className="flex gap-7 text-[13px] uppercase tracking-widest font-medium text-[var(--charcoal)]/70">
               {navLinks.map((link) => (
-                <a key={link.name} href={link.href} className="hover:text-[var(--sage-dark)] transition-colors">
+                <Link key={link.name} href={link.href} className="hover:text-[var(--sage-dark)] transition-colors">
                   {link.name}
-                </a>
+                </Link>
               ))}
             </div>
-            
+
             <AssessmentDialog>
               <button className="bg-[var(--charcoal)] text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-[var(--sage-dark)] transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0">
                 Get Started
@@ -59,7 +60,7 @@ export function Navigation() {
           </div>
 
           {/* Mobile Toggle */}
-          <button 
+          <button
             className="md:hidden text-[var(--charcoal)]"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
@@ -71,15 +72,22 @@ export function Navigation() {
         {mobileMenuOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-[var(--cream)] border-b border-[var(--charcoal)]/5 p-6 flex flex-col gap-6 shadow-xl">
             {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
+              <Link
+                key={link.name}
+                href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-[var(--charcoal)] font-medium text-lg"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
+            <Link
+              href="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-[var(--charcoal)] font-medium text-lg"
+            >
+              Contact
+            </Link>
             <AssessmentDialog>
               <button className="bg-[var(--charcoal)] text-white px-6 py-3 rounded-full text-base font-medium w-full mt-4">
                 Get Started

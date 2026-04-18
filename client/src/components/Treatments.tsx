@@ -13,7 +13,7 @@ export function Treatments() {
             Personalized <em className="italic text-[var(--sage-dark)]">treatment</em>, your way
           </h2>
           <p className="text-lg text-[var(--warm-gray)] font-light leading-relaxed">
-            Two clinically-proven delivery methods — prescribed by physicians and customized to your needs.
+            Two clinically-proven delivery methods for depression, anxiety, and PTSD — prescribed by a physician and customized to your protocol.
           </p>
         </Reveal>
 
@@ -35,13 +35,13 @@ export function Treatments() {
               <p className="text-[var(--warm-gray)] font-light leading-relaxed mb-10 flex-1">
                 Fast-acting intranasal delivery for rapid relief. Physician-calibrated dosing with precise metered-dose spray device. Ideal for acute symptom management.
               </p>
-              <div className="flex items-center justify-between mt-auto">
-                <div className="font-display text-3xl text-[var(--charcoal)] font-light">
-                  $149 <span className="font-sans text-sm font-light text-[var(--warm-gray)]">per order</span>
+              <div className="flex items-center justify-between mt-auto gap-4">
+                <div className="text-sm text-[var(--warm-gray)] font-light leading-snug">
+                  Pricing confirmed after your clinical consult.
                 </div>
                 <AssessmentDialog>
-                  <button className="bg-[var(--charcoal)] text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-[var(--sage-dark)] transition-colors">
-                    Get Started
+                  <button className="bg-[var(--charcoal)] text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-[var(--sage-dark)] transition-colors shrink-0">
+                    See if I qualify
                   </button>
                 </AssessmentDialog>
               </div>
@@ -64,13 +64,13 @@ export function Treatments() {
               <p className="text-[var(--warm-gray)] font-light leading-relaxed mb-10 flex-1">
                 Sublingual lozenges for deeper, sustained therapeutic sessions. Gradual absorption promotes extended neuroplasticity windows. Perfect for integration-focused protocols.
               </p>
-              <div className="flex items-center justify-between mt-auto">
-                <div className="font-display text-3xl text-[var(--charcoal)] font-light">
-                  $129 <span className="font-sans text-sm font-light text-[var(--warm-gray)]">per order</span>
+              <div className="flex items-center justify-between mt-auto gap-4">
+                <div className="text-sm text-[var(--warm-gray)] font-light leading-snug">
+                  Pricing confirmed after your clinical consult.
                 </div>
                 <AssessmentDialog>
-                  <button className="bg-[var(--charcoal)] text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-[var(--sage-dark)] transition-colors">
-                    Get Started
+                  <button className="bg-[var(--charcoal)] text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-[var(--sage-dark)] transition-colors shrink-0">
+                    See if I qualify
                   </button>
                 </AssessmentDialog>
               </div>

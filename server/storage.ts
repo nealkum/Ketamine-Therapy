@@ -1,19 +1,35 @@
-import { db } from "./db";
-import {
-  assessments,
-  type Assessment,
-  type CreateAssessmentRequest,
-} from "@shared/schema";
+import type { Assessment, CreateAssessmentRequest } from "@shared/schema";
 
 export interface IStorage {
   createAssessment(assessment: CreateAssessmentRequest): Promise<Assessment>;
 }
 
-export class DatabaseStorage implements IStorage {
-  async createAssessment(assessment: CreateAssessmentRequest): Promise<Assessment> {
-    const [created] = await db.insert(assessments).values(assessment).returning();
+/**
+ * In-memory storage. Data is not persisted across server restarts.
+ * Submissions are also logged to the console for visibility during development.
+ */
+export class MemoryStorage implements IStorage {
+  private assessments: Assessment[] = [];
+  private nextId = 1;
+
+  async createAssessment(input: CreateAssessmentRequest): Promise<Assessment> {
+    const created: Assessment = {
+      ...input,
+      message: input.message ?? null,
+      id: this.nextId++,
+      status: "pending",
+      createdAt: new Date(),
+    };
+    this.assessments.push(created);
+    console.log("[assessment received]", {
+      id: created.id,
+      fullName: created.fullName,
+      email: created.email,
+      phone: created.phone,
+      symptoms: created.symptoms,
+    });
     return created;
   }
 }
 
-export const storage = new DatabaseStorage();
+export const storage: IStorage = new MemoryStorage();
