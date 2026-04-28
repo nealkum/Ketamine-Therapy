@@ -4,21 +4,21 @@ export function Testimonials() {
   const testimonials = [
     {
       quote: "After years of therapy and medication, ketamine was the breakthrough I needed. Within two sessions I felt a weight lift that I'd been carrying for decades.",
-      name: "Sarah M.",
+      name: "Sarah",
       detail: "Depression Patient",
-      initials: "SM"
+      initials: "S"
     },
     {
       quote: "The team at Lucid made the entire process feel safe and supported. The convenience of at-home treatment completely changed my healing journey.",
-      name: "David K.",
+      name: "David",
       detail: "Anxiety Patient",
-      initials: "DK"
+      initials: "D"
     },
     {
       quote: "I was skeptical at first, but the results speak for themselves. I have my life back. The clinician check-ins were invaluable.",
-      name: "Emily R.",
+      name: "Emily",
       detail: "PTSD Patient",
-      initials: "ER"
+      initials: "E"
     }
   ];
 

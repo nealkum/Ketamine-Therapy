@@ -82,9 +82,6 @@ export function Conditions() {
               See if you qualify — 5 min
             </button>
           </AssessmentDialog>
-          <p className="text-xs text-[var(--warm-gray)] mt-4 font-light">
-            If your condition isn't listed, our clinicians will help you find appropriate care elsewhere.
-          </p>
         </Reveal>
       </div>
     </section>

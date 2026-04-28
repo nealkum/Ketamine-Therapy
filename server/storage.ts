@@ -16,6 +16,7 @@ export class MemoryStorage implements IStorage {
     const created: Assessment = {
       ...input,
       message: input.message ?? null,
+      otherCondition: input.otherCondition ?? null,
       id: this.nextId++,
       status: "pending",
       createdAt: new Date(),
@@ -23,10 +24,13 @@ export class MemoryStorage implements IStorage {
     this.assessments.push(created);
     console.log("[assessment received]", {
       id: created.id,
-      fullName: created.fullName,
+      name: `${created.firstName} ${created.lastName}`,
       email: created.email,
       phone: created.phone,
-      symptoms: created.symptoms,
+      dateOfBirth: created.dateOfBirth,
+      state: created.state,
+      conditions: created.conditions,
+      otherCondition: created.otherCondition,
     });
     return created;
   }

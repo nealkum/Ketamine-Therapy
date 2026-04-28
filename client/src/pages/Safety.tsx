@@ -5,6 +5,8 @@ import { ShieldCheck, AlertTriangle, Stethoscope, PhoneCall } from "lucide-react
 export default function Safety() {
   return (
     <PageLayout
+      seoTitle="Safety standards — Lucid"
+      seoDescription="How Lucid keeps patients safe: physician-led prescribing, monthly medical re-screening, written protocols, and 24/7 clinician support."
       eyebrow="Safety"
       title={<>
         Responsible care, <em className="italic text-[var(--sage-dark)]">built in</em>.

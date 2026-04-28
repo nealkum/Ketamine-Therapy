@@ -22,6 +22,8 @@ const doesNotQualify = [
 export default function Eligibility() {
   return (
     <PageLayout
+      seoTitle="Eligibility — Is ketamine therapy right for you?"
+      seoDescription="Plain-English criteria for who qualifies for Lucid's at-home ketamine therapy and who we cannot treat. Find out in five minutes."
       eyebrow="Eligibility"
       title={<>Is ketamine therapy <em className="italic text-[var(--sage-dark)]">right for you?</em></>}
       lede="Our clinicians evaluate every applicant against a clear set of medical criteria. Here's a plain-English look at what we screen for — the assessment takes about five minutes."

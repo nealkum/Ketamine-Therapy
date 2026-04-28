@@ -2,15 +2,29 @@ import { useEffect } from "react";
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
 import { Reveal } from "./Reveal";
+import { useSeo } from "@/lib/useSeo";
 
 interface PageLayoutProps {
   eyebrow?: string;
   title: React.ReactNode;
   lede?: string;
+  /** Page <title> shown in the browser tab. */
+  seoTitle: string;
+  /** Meta description for search engines + social cards. */
+  seoDescription: string;
   children: React.ReactNode;
 }
 
-export function PageLayout({ eyebrow, title, lede, children }: PageLayoutProps) {
+export function PageLayout({
+  eyebrow,
+  title,
+  lede,
+  seoTitle,
+  seoDescription,
+  children,
+}: PageLayoutProps) {
+  useSeo({ title: seoTitle, description: seoDescription });
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

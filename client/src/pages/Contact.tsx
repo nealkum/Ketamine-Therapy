@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PageLayout, Card } from "@/components/PageLayout";
 import { Reveal } from "@/components/Reveal";
-import { Mail, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -18,19 +18,14 @@ export default function Contact() {
 
   return (
     <PageLayout
+      seoTitle="Contact Lucid"
+      seoDescription="Reach Lucid's patient care team. Email, phone, and a contact form for questions about treatment, eligibility, or how we work."
       eyebrow="Get in touch"
       title={<>We'd love to <em className="italic text-[var(--sage-dark)]">hear from you</em>.</>}
       lede="Questions about treatment, eligibility, or working with Lucid? Our patient care team typically responds within one business day."
     >
-      <div className="max-w-4xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 gap-6 mb-16">
+      <div className="max-w-md mx-auto px-6 lg:px-8 mb-16">
         <Reveal>
-          <Card title="Email">
-            <a href="mailto:hello@lucid.example" className="text-[var(--sage-dark)] hover:underline flex items-center gap-2">
-              <Mail size={16} /> hello@lucid.example
-            </a>
-          </Card>
-        </Reveal>
-        <Reveal delay={0.05}>
           <Card title="Patient support">
             <a href="tel:+18005551234" className="text-[var(--sage-dark)] hover:underline flex items-center gap-2">
               <Phone size={16} /> (800) 555-1234

@@ -3,6 +3,8 @@ import { PageLayout, Prose } from "@/components/PageLayout";
 export default function Privacy() {
   return (
     <PageLayout
+      seoTitle="Privacy Policy — Lucid"
+      seoDescription="How Lucid collects, uses, and protects your personal and health information. Effective January 1, 2026."
       eyebrow="Legal"
       title={<>Privacy <em className="italic text-[var(--sage-dark)]">Policy</em></>}
       lede="Last updated: January 1, 2026. This policy explains what personal information Lucid collects, how we use it, and your rights. It is written to be readable — the full legal terms are below."
@@ -61,7 +63,7 @@ export default function Privacy() {
           <li>Obtain a portable copy of your information.</li>
           <li>Opt out of sales or targeted advertising (we do not engage in either).</li>
         </ul>
-        <p>To exercise any of these rights, email <a href="mailto:privacy@lucid.example" className="text-[var(--sage-dark)] underline">privacy@lucid.example</a>.</p>
+        <p>To exercise any of these rights, contact our Privacy Officer using the contact information at the bottom of this page.</p>
 
         <h2 className="font-display text-3xl text-[var(--charcoal)] mt-12">7. Security</h2>
         <p>
@@ -85,7 +87,7 @@ export default function Privacy() {
 
         <h2 className="font-display text-3xl text-[var(--charcoal)] mt-12">11. Contact</h2>
         <p>
-          Questions or complaints: <a href="mailto:privacy@lucid.example" className="text-[var(--sage-dark)] underline">privacy@lucid.example</a>. Lucid Health Inc., [address placeholder], Attn: Privacy Officer.
+          Questions or complaints may be addressed in writing to: Lucid Health Inc., [address placeholder], Attn: Privacy Officer.
         </p>
       </Prose>
     </PageLayout>

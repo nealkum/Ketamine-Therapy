@@ -6,6 +6,8 @@ import { Check, X, Stethoscope, BookOpen, ShieldCheck } from "lucide-react";
 export default function About() {
   return (
     <PageLayout
+      seoTitle="About Lucid — Physician-led ketamine telehealth"
+      seoDescription="Lucid is a clinician-led telehealth practice focused on treatment-resistant depression, anxiety, and PTSD. Learn how we built responsible at-home ketamine care."
       eyebrow="About Lucid"
       title={
         <>
@@ -90,28 +92,16 @@ export default function About() {
       </div>
 
       {/* Medical leadership */}
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 mb-24">
+      <div className="max-w-3xl mx-auto px-6 lg:px-8 mb-24">
         <SectionHeading eyebrow="Medical leadership" title="Physicians and researchers at the core" />
-        <div className="grid md:grid-cols-3 gap-6">
-          <Reveal>
-            <Card title="Chief Medical Officer">
-              Board-certified psychiatrist with specialized training in psychedelic-assisted therapy and ketamine clinical trials.
-              <span className="block text-xs text-[var(--warm-gray)]/80 mt-3 italic">[Placeholder — populate with CMO name, credentials, and photo.]</span>
-            </Card>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <Card title="Medical Advisory Board">
-              Our protocols are reviewed quarterly by an independent advisory board of psychiatrists, pharmacologists, and harm-reduction researchers.
-              <span className="block text-xs text-[var(--warm-gray)]/80 mt-3 italic">[Placeholder — list advisory board members and affiliations.]</span>
-            </Card>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <Card title="Prescribing physicians">
+        <Reveal>
+          <div className="bg-white rounded-[28px] p-8 border border-[var(--charcoal)]/5 shadow-sm text-center">
+            <h3 className="font-display text-xl text-[var(--charcoal)] mb-3">Prescribing physicians</h3>
+            <p className="text-[var(--warm-gray)] font-light leading-relaxed text-[15px]">
               Every physician on our panel is US-licensed, DEA-registered, and trained on our internal clinical guidelines before seeing their first Lucid patient.
-              <span className="block text-xs text-[var(--warm-gray)]/80 mt-3 italic">[Placeholder — populate with physician roster.]</span>
-            </Card>
-          </Reveal>
-        </div>
+            </p>
+          </div>
+        </Reveal>
       </div>
 
       {/* Accreditation row */}

@@ -33,12 +33,9 @@ export function MedicalStandards() {
           <div className="text-[var(--sage-dark)] text-sm font-bold tracking-widest uppercase mb-4">
             Our clinical standards
           </div>
-          <h2 className="font-display text-4xl sm:text-5xl text-[var(--charcoal)] font-light mb-6">
+          <h2 className="font-display text-4xl sm:text-5xl text-[var(--charcoal)] font-light">
             The guardrails <em className="italic text-[var(--sage-dark)]">behind every prescription</em>
           </h2>
-          <p className="text-lg text-[var(--warm-gray)] font-light leading-relaxed">
-            The reason telehealth ketamine gets criticized is because some providers skip the medicine part. We don't. These are the non-negotiables we operate by.
-          </p>
         </Reveal>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">

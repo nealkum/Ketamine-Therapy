@@ -28,8 +28,8 @@ export function Footer() {
             <Link href="/" className="font-display text-3xl font-medium tracking-tight text-white mb-6 inline-block">
               Lucid
             </Link>
-            <p className="text-white/50 text-sm font-light leading-relaxed max-w-sm">
-              Physician-guided ketamine therapy at home. Safe, evidence-based, and built around monthly medical check-ins — no shortcuts.
+            <p className="text-white/50 text-xs font-light leading-relaxed max-w-md">
+              The services provided have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease. The material on this website is provided for informational purposes only and is not medical advice. Always consult your physician before beginning any treatment or therapy program. Any designations or references to therapies are for marketing purposes only and do not represent actual products.
             </p>
           </div>
 
@@ -38,7 +38,6 @@ export function Footer() {
             <ul className="space-y-4 text-sm font-light text-white/50">
               <li><Link href="/eligibility" className="hover:text-white transition-colors">Eligibility</Link></li>
               <li><Link href="/safety" className="hover:text-white transition-colors">Safety</Link></li>
-              <li><a href="/#science" className="hover:text-white transition-colors">The Science</a></li>
             </ul>
           </div>
 
@@ -55,15 +54,13 @@ export function Footer() {
             <h4 className="text-white text-xs font-semibold tracking-widest uppercase mb-6">Support</h4>
             <ul className="space-y-4 text-sm font-light text-white/50">
               <li><a href="tel:+18005551234" className="hover:text-white transition-colors">(800) 555-1234</a></li>
-              <li><a href="mailto:hello@lucid.example" className="hover:text-white transition-colors">hello@lucid.example</a></li>
-              <li><a href="tel:988" className="hover:text-white transition-colors">Crisis: 988</a></li>
             </ul>
           </div>
 
         </div>
 
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-white/40 font-light">
-          <p>&copy; {new Date().getFullYear()} Lucid Health Inc. All rights reserved. <span className="ml-2 opacity-60">Reference prototype.</span></p>
+          <p>&copy; {new Date().getFullYear()} Lucid Health Inc. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
@@ -72,7 +69,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 text-[10px] text-white/20 font-light leading-relaxed max-w-4xl text-center mx-auto md:text-left md:mx-0">
-          Disclaimer: Ketamine is a Schedule III controlled substance. Treatment is subject to medical evaluation and prescription by a licensed physician. Ketamine therapy is not suitable for everyone and may have side effects. If you are experiencing a mental health emergency, please call or text 988 or go to the nearest emergency room.
+          Disclaimer: Ketamine is a Schedule III controlled substance. Treatment is subject to medical evaluation and prescription by a licensed physician. Ketamine therapy is not suitable for everyone and may have side effects. If you are experiencing a mental health emergency, please call 911 or go to the nearest emergency room.
         </div>
       </div>
     </footer>

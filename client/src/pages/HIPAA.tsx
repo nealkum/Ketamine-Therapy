@@ -3,6 +3,8 @@ import { PageLayout, Prose } from "@/components/PageLayout";
 export default function HIPAA() {
   return (
     <PageLayout
+      seoTitle="Notice of Privacy Practices — Lucid"
+      seoDescription="Lucid's HIPAA Notice of Privacy Practices: how your protected health information may be used and disclosed, and your rights."
       eyebrow="Legal"
       title={<>Notice of <em className="italic text-[var(--sage-dark)]">Privacy Practices</em></>}
       lede="Effective date: January 1, 2026. This notice describes how your medical information may be used and disclosed, and how you can access that information. Please review it carefully."
@@ -51,7 +53,7 @@ export default function HIPAA() {
 
         <h2 className="font-display text-3xl text-[var(--charcoal)] mt-12">Complaints</h2>
         <p>
-          If you believe your privacy rights have been violated, you may file a complaint with us at <a href="mailto:privacy@lucid.example" className="text-[var(--sage-dark)] underline">privacy@lucid.example</a> or with the U.S. Department of Health and Human Services, Office for Civil Rights. We will not retaliate against you for filing a complaint.
+          If you believe your privacy rights have been violated, you may file a complaint with us in writing using the contact information below, or with the U.S. Department of Health and Human Services, Office for Civil Rights. We will not retaliate against you for filing a complaint.
         </p>
 
         <h2 className="font-display text-3xl text-[var(--charcoal)] mt-12">Changes to this notice</h2>
@@ -61,7 +63,7 @@ export default function HIPAA() {
 
         <h2 className="font-display text-3xl text-[var(--charcoal)] mt-12">Contact</h2>
         <p>
-          Privacy Officer, Lucid Health Inc., [address placeholder]. Email: <a href="mailto:privacy@lucid.example" className="text-[var(--sage-dark)] underline">privacy@lucid.example</a>.
+          Privacy Officer, Lucid Health Inc., [address placeholder].
         </p>
       </Prose>
     </PageLayout>

@@ -39,10 +39,6 @@ export function FAQ() {
     {
       q: "Is ketamine addictive?",
       a: "At the low, physician-monitored doses used for therapy, addiction risk is low but not zero. We screen for substance use history during intake and decline treatment when risk factors are present. If you have concerns, our clinicians will discuss them openly."
-    },
-    {
-      q: "What if it's not working for me?",
-      a: "Roughly 20–30% of patients don't respond adequately to ketamine. If your monthly check-in shows limited benefit, we'll adjust your protocol or, if appropriate, help you transition to another form of care."
     }
   ];
 

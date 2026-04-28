@@ -3,6 +3,8 @@ import { PageLayout, Prose } from "@/components/PageLayout";
 export default function Terms() {
   return (
     <PageLayout
+      seoTitle="Terms of Service — Lucid"
+      seoDescription="The terms governing your use of the Lucid website and telehealth services. Please read carefully before using our services."
       eyebrow="Legal"
       title={<>Terms of <em className="italic text-[var(--sage-dark)]">Service</em></>}
       lede="Last updated: January 1, 2026. These terms govern your use of the Lucid website and services. By using Lucid, you agree to be bound by them."
@@ -94,7 +96,7 @@ export default function Terms() {
 
         <h2 className="font-display text-3xl text-[var(--charcoal)] mt-12">15. Contact</h2>
         <p>
-          Lucid Health Inc., [address placeholder]. Questions: <a href="mailto:legal@lucid.example" className="text-[var(--sage-dark)] underline">legal@lucid.example</a>.
+          Questions about these Terms may be addressed in writing to: Lucid Health Inc., [address placeholder], Attn: Legal.
         </p>
       </Prose>
     </PageLayout>
