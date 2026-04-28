@@ -18,7 +18,7 @@ export function Hero() {
 
           <Reveal delay={0.2}>
             <p className="text-lg sm:text-xl text-[var(--warm-gray)] font-light leading-relaxed mb-10 max-w-lg mx-auto">
-              Physician-prescribed ketamine for depression, anxiety, and PTSD — delivered to your door and reviewed by a real clinician every month. Evidence-based. Responsible. Actually supportive.
+              Physician-prescribed ketamine for depression, anxiety, and PTSD — delivered to your door and reviewed by a real clinician every month. Evidence-based treatments.
             </p>
           </Reveal>
 

@@ -22,7 +22,20 @@ import { z } from "zod";
  */
 
 // === ENUMS ===
-export const STATES = ["CA", "FL", "TX", "NY"] as const;
+// All 50 US states + DC. Used for the form dropdown.
+export const STATES = [
+  "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL",
+  "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME",
+  "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH",
+  "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI",
+  "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+] as const;
+
+// States where Lucid currently has licensed prescribing physicians.
+// Anyone selecting a non-supported state is collected as a waitlist lead.
+// UPDATE THIS LIST WHEN NEW STATES OPEN.
+export const SUPPORTED_STATES = ["CA", "FL", "TX", "NY"] as const;
+
 export const CONDITIONS = ["depression", "anxiety", "ptsd", "other"] as const;
 
 // Validates MM/DD/YYYY and that the patient is at least 18 years old.

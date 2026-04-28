@@ -1,4 +1,5 @@
 import type { Assessment, CreateAssessmentRequest } from "@shared/schema";
+import { SUPPORTED_STATES } from "@shared/schema";
 
 export interface IStorage {
   createAssessment(assessment: CreateAssessmentRequest): Promise<Assessment>;
@@ -13,12 +14,13 @@ export class MemoryStorage implements IStorage {
   private nextId = 1;
 
   async createAssessment(input: CreateAssessmentRequest): Promise<Assessment> {
+    const supported = (SUPPORTED_STATES as readonly string[]).includes(input.state);
     const created: Assessment = {
       ...input,
       message: input.message ?? null,
       otherCondition: input.otherCondition ?? null,
       id: this.nextId++,
-      status: "pending",
+      status: supported ? "pending" : "waitlisted",
       createdAt: new Date(),
     };
     this.assessments.push(created);

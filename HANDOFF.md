@@ -98,7 +98,7 @@ Display font: a serif used in `<h1>`/`<h2>` (currently via the `font-display` cl
 
 ### Three-step flow
 
-1. **About you** — first name, last name, email, date of birth (MM/DD/YYYY auto-formatted), state (CA/FL/TX/NY dropdown).
+1. **About you** — first name, last name, email, date of birth (MM/DD/YYYY auto-formatted), state (full 50-state dropdown).
 2. **What's going on** — multi-select chips for Depression / Anxiety / PTSD / Something else; conditional "Tell us more" text if "Something else" is picked; optional context textarea.
 3. **How to reach you** — phone (auto-formatted as `(555) 123-4567`).
 
@@ -111,7 +111,7 @@ Display font: a serif used in `<h1>`/`<h2>` (currently via the `font-display` cl
 - Auto-formatted fields strip non-digits and reformat live (phone + DOB).
 - Each step auto-focuses its first input.
 - Date of birth is rejected if the user is under 18 — schema-enforced.
-- After successful submit, the dialog swaps to a **"Thanks, {firstName}"** success state with next-step copy. It is closed via the Close button, *not* by reset.
+- After successful submit, the dialog swaps to a **"Thanks, {firstName}"** success state with next-step copy. **The success copy branches** on whether the patient's state is in `SUPPORTED_STATES`: supported states see the standard "physician will review within one business day" message; non-supported states see a waitlist confirmation. The server marks waitlisted submissions with `status: "waitlisted"` so your backend can route them differently.
 - On modal close after submit, state fully resets and the localStorage draft is cleared.
 
 ### Data contract

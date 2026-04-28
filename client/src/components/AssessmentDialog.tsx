@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api, type AssessmentInput } from "@shared/routes";
-import { CONDITIONS, STATES } from "@shared/schema";
+import { CONDITIONS, STATES, SUPPORTED_STATES } from "@shared/schema";
 import { useSubmitAssessment } from "@/hooks/use-assessments";
 import {
   Dialog,
@@ -40,11 +40,22 @@ const STORAGE_KEY = "lucid:assessment:draft";
 type StepField = keyof AssessmentInput;
 
 const STATE_LABELS: Record<(typeof STATES)[number], string> = {
-  CA: "California",
-  FL: "Florida",
-  TX: "Texas",
-  NY: "New York",
+  AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California",
+  CO: "Colorado", CT: "Connecticut", DE: "Delaware", DC: "District of Columbia",
+  FL: "Florida", GA: "Georgia", HI: "Hawaii", ID: "Idaho", IL: "Illinois",
+  IN: "Indiana", IA: "Iowa", KS: "Kansas", KY: "Kentucky", LA: "Louisiana",
+  ME: "Maine", MD: "Maryland", MA: "Massachusetts", MI: "Michigan",
+  MN: "Minnesota", MS: "Mississippi", MO: "Missouri", MT: "Montana",
+  NE: "Nebraska", NV: "Nevada", NH: "New Hampshire", NJ: "New Jersey",
+  NM: "New Mexico", NY: "New York", NC: "North Carolina", ND: "North Dakota",
+  OH: "Ohio", OK: "Oklahoma", OR: "Oregon", PA: "Pennsylvania",
+  RI: "Rhode Island", SC: "South Carolina", SD: "South Dakota",
+  TN: "Tennessee", TX: "Texas", UT: "Utah", VT: "Vermont", VA: "Virginia",
+  WA: "Washington", WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming",
 };
+
+const isSupportedState = (s: string | undefined): boolean =>
+  !!s && (SUPPORTED_STATES as readonly string[]).includes(s);
 
 const CONDITION_LABELS: Record<(typeof CONDITIONS)[number], string> = {
   depression: "Depression",
@@ -68,9 +79,9 @@ const steps: { name: string; title: string; subtitle: string; fields: StepField[
   },
   {
     name: "How to reach you",
-    title: "Where should we reach you?",
+    title: "Last step",
     subtitle:
-      "Ketamine is a controlled medication — every patient must be medically screened each month before a new prescription. A phone number lets our clinicians complete your monthly review.",
+      "Ketamine is a controlled medication — every patient is medically re-screened each month before a new prescription is issued.",
     fields: ["phone"],
   },
 ];
@@ -108,7 +119,7 @@ const defaultValues: AssessmentInput = {
 export function AssessmentDialog({ children }: AssessmentDialogProps) {
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
-  const [submittedName, setSubmittedName] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState<{ firstName: string; state: string } | null>(null);
   const submitAssessment = useSubmitAssessment();
   const firstFieldRef = useRef<HTMLInputElement | null>(null);
 
@@ -193,7 +204,7 @@ export function AssessmentDialog({ children }: AssessmentDialogProps) {
   const onSubmit = (data: AssessmentInput) => {
     submitAssessment.mutate(data, {
       onSuccess: () => {
-        setSubmittedName(data.firstName);
+        setSubmitted({ firstName: data.firstName, state: data.state });
         try {
           localStorage.removeItem(STORAGE_KEY);
         } catch {
@@ -205,11 +216,11 @@ export function AssessmentDialog({ children }: AssessmentDialogProps) {
 
   const handleOpenChange = (next: boolean) => {
     setOpen(next);
-    if (!next && submittedName) {
+    if (!next && submitted) {
       // After a successful submit, fully reset on close.
       form.reset(defaultValues);
       setStep(0);
-      setSubmittedName(null);
+      setSubmitted(null);
     }
   };
 
@@ -225,8 +236,12 @@ export function AssessmentDialog({ children }: AssessmentDialogProps) {
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[520px] bg-[var(--cream)] border-none shadow-2xl max-h-[90vh] overflow-y-auto">
-        {submittedName ? (
-          <SuccessState firstName={submittedName} onClose={() => handleOpenChange(false)} />
+        {submitted ? (
+          <SuccessState
+            firstName={submitted.firstName}
+            stateCode={submitted.state}
+            onClose={() => handleOpenChange(false)}
+          />
         ) : (
           <>
             <DialogHeader>
@@ -362,7 +377,7 @@ export function AssessmentDialog({ children }: AssessmentDialogProps) {
                               </SelectContent>
                             </Select>
                             <p className="text-[11px] text-[var(--warm-gray)]/80 font-light">
-                              We currently practice in CA, FL, TX, NY.
+                              Not yet open in your state? We'll add you to the waitlist.
                             </p>
                             <FormMessage />
                           </FormItem>
@@ -525,7 +540,18 @@ export function AssessmentDialog({ children }: AssessmentDialogProps) {
   );
 }
 
-function SuccessState({ firstName, onClose }: { firstName: string; onClose: () => void }) {
+function SuccessState({
+  firstName,
+  stateCode,
+  onClose,
+}: {
+  firstName: string;
+  stateCode: string;
+  onClose: () => void;
+}) {
+  const supported = isSupportedState(stateCode);
+  const stateName = STATE_LABELS[stateCode as keyof typeof STATE_LABELS] || "your state";
+
   return (
     <div className="text-center py-6">
       <div className="w-14 h-14 rounded-full bg-[var(--sage)]/15 border border-[var(--sage)]/30 flex items-center justify-center mx-auto mb-5">
@@ -534,10 +560,17 @@ function SuccessState({ firstName, onClose }: { firstName: string; onClose: () =
       <DialogTitle className="font-display text-3xl font-normal text-[var(--charcoal)] mb-3">
         Thanks, {firstName}.
       </DialogTitle>
-      <DialogDescription className="text-[var(--warm-gray)] font-light leading-relaxed mb-6">
-        A board-certified physician will review your assessment within one business day. You'll
-        get an email when it's time to book your consult.
-      </DialogDescription>
+      {supported ? (
+        <DialogDescription className="text-[var(--warm-gray)] font-light leading-relaxed mb-6">
+          A board-certified physician will review your assessment within one business day. You'll
+          get an email when it's time to book your consult.
+        </DialogDescription>
+      ) : (
+        <DialogDescription className="text-[var(--warm-gray)] font-light leading-relaxed mb-6">
+          Lucid isn't yet practicing in {stateName} — but you're on the waitlist. We'll email you
+          the moment we open in your state so you can pick up where you left off.
+        </DialogDescription>
+      )}
       <Button
         onClick={onClose}
         className="bg-[var(--charcoal)] hover:bg-[var(--sage-dark)] text-white rounded-full py-6 px-8 text-base font-medium"
